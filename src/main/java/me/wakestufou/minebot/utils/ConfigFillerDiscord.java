@@ -14,5 +14,6 @@ public class ConfigFillerDiscord implements ConfigFiller{
         cfgSection.set("invit", "invitDiscord");
         cfgSection.set("guildid", "933711800678121492");
         cfgSection.set("channelid", "944591738411036672");
+        cfgSection.set("name", "MineBot");
     }
 }
