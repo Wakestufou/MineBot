@@ -50,6 +50,27 @@ public final class MineBot extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        Objects.requireNonNull(
+            Objects.requireNonNull(
+                MineBot
+                    .getInstance()
+                    .getBot()
+                    .getJda()
+                    .getGuildById(
+                        Objects.requireNonNull(
+                            Objects.requireNonNull(
+                                Config
+                                    .getInstance()
+                                    .getConfigurationFile("config.yml")
+                                    .getConfigurationSection("discord"))
+                                    .get("guildid")
+                        )
+                        .toString()
+                    )
+            )
+            .getTextChannelById(
+                Objects.requireNonNull(Objects.requireNonNull(Config.getInstance().getConfigurationFile("config.yml").getConfigurationSection("discord")).get("channelid")).toString())
+        ).getManager().setTopic("Server Closed !").queue();
         Message.sendClose();
         this._bot.stop();
     }

@@ -4,6 +4,7 @@ package me.wakestufou.minebot.discord.events;
 import me.wakestufou.minebot.MineBot;
 import me.wakestufou.minebot.discord.utils.Message;
 import me.wakestufou.minebot.utils.Config;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
@@ -31,6 +32,28 @@ public class ReadyListener implements EventListener {
                                     " / Connected Player : " +
                                     (MineBot.getInstance().getServer().getOnlinePlayers().size())
                     ).queue();
+
+            Objects.requireNonNull(
+                Objects.requireNonNull(
+                    MineBot
+                        .getInstance()
+                        .getBot()
+                        .getJda()
+                        .getGuildById(
+                            Objects.requireNonNull(
+                                Objects.requireNonNull(
+                                    Config
+                                        .getInstance()
+                                        .getConfigurationFile("config.yml")
+                                        .getConfigurationSection("discord"))
+                                        .get("guildid"))
+                                    .toString()
+                        )
+                )
+                .getTextChannelById(
+                Objects.requireNonNull(Objects.requireNonNull(Config.getInstance().getConfigurationFile("config.yml").getConfigurationSection("discord")).get("channelid")).toString())
+            ).getManager().setTopic("Server Open !").queue();
+
         }
     }
 }
