@@ -1,0 +1,8 @@
+name: MineBot
+version: '${project.version}'
+main: me.wakestufou.minebot.MineBot
+api-version: 1.19
+commands:
+  bc:
+    description: Ceci est une commandes
+    permission: minebot.bc
